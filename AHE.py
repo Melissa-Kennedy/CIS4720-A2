@@ -1,8 +1,9 @@
 import cv2 as cv
 
-img = cv.imread("testImages/groundTruths/eg1_lowcntrst.jpg", 0)
-clahe = cv.createCLAHE(clipLimit=0, tileGridSize=(9, 9))
-cl1 = clahe.apply(img)
+def ahe(filename):
+    img = cv.imread(filename, 0)
+    ahe = cv.createCLAHE(clipLimit=0, tileGridSize=(9, 9))
+    ahe_img = ahe.apply(img)
 
-cv.imshow("cl1.png", cl1)
-cv.waitKey(0)
+    cv.imshow("Adaptive Histogram Equalization.png", ahe_img)
+    cv.waitKey(0)
