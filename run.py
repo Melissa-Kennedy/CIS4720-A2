@@ -50,7 +50,7 @@ def main():
         ahe.ahe(f"testImages/groundTruths/{prefix}_lowcntrst{number}.jpg")
         clahe.clahe(f"testImages/groundTruths/{prefix}_lowcntrst{number}.jpg")
         minmax.minmax(f"testImages/groundTruths/{prefix}_lowcntrst{number}.jpg")
-        minmax.local_minmax(f"testImages/groundTruths/{prefix}_lowcntrst{number}.jpg", 100)
+        minmax.local_minmax(f"testImages/groundTruths/{prefix}_lowcntrst{number}.jpg", 20)
 
         base_quality = quality.image_quality(f"testImages/groundTruths/{prefix}_lowcntrst{number}.jpg", f"testImages/groundTruths/{prefix}_grndtruth.jpg")
         ahe_quality = quality.image_quality(f"editedImages/adaptive_histogram_equalization.jpg", f"testImages/groundTruths/{prefix}_grndtruth.jpg")
