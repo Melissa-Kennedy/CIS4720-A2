@@ -5,3 +5,4 @@ import minmax
 ahe.ahe("testImages/groundTruths/eg1_lowcntrst.jpg")
 clahe.clahe("testImages/groundTruths/eg1_lowcntrst.jpg")
 minmax.minmax("testImages/groundTruths/eg1_lowcntrst.jpg")
+# minmax.local_minmax("testImages/groundTruths/eg1_lowcntrst.jpg", 100)
