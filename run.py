@@ -2,21 +2,70 @@ import ahe
 import clahe
 import minmax
 import quality
+from os import path
 
-ahe.ahe("testImages/groundTruths/eg1_lowcntrst.jpg")
-clahe.clahe("testImages/groundTruths/eg1_lowcntrst.jpg")
-minmax.minmax("testImages/groundTruths/eg1_lowcntrst.jpg")
-minmax.local_minmax("testImages/groundTruths/eg1_lowcntrst.jpg", 100)
+def main():
+    prefix = input("Enter file prefix: ")
+    number = input("Enter number (0 for empty): ")
+    number = "" if int(number) == 0 else str(number)
 
-base_quality = quality.image_quality("testImages/groundTruths/eg1_lowcntrst.jpg", "testImages/groundTruths/eg1_grndtruth.jpg")
-ahe_quality = quality.image_quality("editedImages/adaptive_histogram_equalization.jpg", "testImages/groundTruths/eg1_grndtruth.jpg")
-clahe_quality = quality.image_quality("editedImages/contrast_limited_adaptive_histogram_equalization.jpg", "testImages/groundTruths/eg1_grndtruth.jpg")
-minmax_quality = quality.image_quality("editedImages/minmax.jpg", "testImages/groundTruths/eg1_grndtruth.jpg")
-minmax_local_quality = quality.image_quality("editedImages/local_minmax.jpg", "testImages/groundTruths/eg1_grndtruth.jpg")
+    if not path.exists(f"testImages/groundTruths/{prefix}_lowcntrst{number}.jpg"):
+        return
+        
+    algo = input("Enter algorithm name (CLAHE, AHE, minmax, local, all): ")
 
-print(f"Base Image Quality: {base_quality}")
-print(f"AHE Image Quality: {ahe_quality}")
-print(f"CLAHE Image Quality: {clahe_quality}")
-print(f"MinMax Image Quality: {minmax_quality}")
-print(f"Local MinMax Image Quality: {minmax_local_quality}")
-# print(quality.image_quality("testImages/groundTruths/eg1_grndtruth.jpg", "testImages/groundTruths/eg1_grndtruth.jpg"))
+    if algo.lower() == "ahe":
+        ahe.ahe(f"testImages/groundTruths/{prefix}_lowcntrst{number}.jpg")
+
+        base_quality = quality.image_quality(f"testImages/groundTruths/{prefix}_lowcntrst{number}.jpg", f"testImages/groundTruths/{prefix}_grndtruth.jpg")
+        ahe_quality = quality.image_quality(f"editedImages/adaptive_histogram_equalization.jpg", f"testImages/groundTruths/{prefix}_grndtruth.jpg")
+        
+        print(f"Base Image Quality: {base_quality}")
+        print(f"AHE Image Quality: {ahe_quality}")
+    elif algo.lower() == "clahe":
+        clahe.clahe(f"testImages/groundTruths/{prefix}_lowcntrst{number}.jpg")
+        
+        base_quality = quality.image_quality(f"testImages/groundTruths/{prefix}_lowcntrst{number}.jpg", f"testImages/groundTruths/{prefix}_grndtruth.jpg")
+        clahe_quality = quality.image_quality(f"editedImages/contrast_limited_adaptive_histogram_equalization.jpg", f"testImages/groundTruths/{prefix}_grndtruth.jpg")
+        
+        print(f"Base Image Quality: {base_quality}")
+        print(f"CLAHE Image Quality: {clahe_quality}")
+    elif algo.lower() == "minmax":
+        minmax.minmax(f"testImages/groundTruths/{prefix}_lowcntrst{number}.jpg")
+        
+        base_quality = quality.image_quality(f"testImages/groundTruths/{prefix}_lowcntrst{number}.jpg", f"testImages/groundTruths/{prefix}_grndtruth.jpg")
+        minmax_quality = quality.image_quality(f"editedImages/minmax.jpg", f"testImages/groundTruths/{prefix}_grndtruth.jpg")
+        
+        print(f"Base Image Quality: {base_quality}")
+        print(f"MinMax Image Quality: {minmax_quality}")
+    elif algo.lower() == "local":
+        minmax.local_minmax(f"testImages/groundTruths/{prefix}_lowcntrst{number}.jpg", 100)
+        
+        base_quality = quality.image_quality(f"testImages/groundTruths/{prefix}_lowcntrst{number}.jpg", f"testImages/groundTruths/{prefix}_grndtruth.jpg")
+        minmax_local_quality = quality.image_quality(f"editedImages/local_minmax.jpg", f"testImages/groundTruths/{prefix}_grndtruth.jpg")
+        
+        print(f"Base Image Quality: {base_quality}")
+        print(f"Local MinMax Image Quality: {minmax_local_quality}")
+    elif algo.lower() == "all":
+        ahe.ahe(f"testImages/groundTruths/{prefix}_lowcntrst{number}.jpg")
+        clahe.clahe(f"testImages/groundTruths/{prefix}_lowcntrst{number}.jpg")
+        minmax.minmax(f"testImages/groundTruths/{prefix}_lowcntrst{number}.jpg")
+        minmax.local_minmax(f"testImages/groundTruths/{prefix}_lowcntrst{number}.jpg", 100)
+
+        base_quality = quality.image_quality(f"testImages/groundTruths/{prefix}_lowcntrst{number}.jpg", f"testImages/groundTruths/{prefix}_grndtruth.jpg")
+        ahe_quality = quality.image_quality(f"editedImages/adaptive_histogram_equalization.jpg", f"testImages/groundTruths/{prefix}_grndtruth.jpg")
+        clahe_quality = quality.image_quality(f"editedImages/contrast_limited_adaptive_histogram_equalization.jpg", f"testImages/groundTruths/{prefix}_grndtruth.jpg")
+        minmax_quality = quality.image_quality(f"editedImages/minmax.jpg", f"testImages/groundTruths/{prefix}_grndtruth.jpg")
+        minmax_local_quality = quality.image_quality(f"editedImages/local_minmax.jpg", f"testImages/groundTruths/{prefix}_grndtruth.jpg")
+
+        print(f"Base Image Quality: {base_quality}")
+        print(f"AHE Image Quality: {ahe_quality}")
+        print(f"CLAHE Image Quality: {clahe_quality}")
+        print(f"MinMax Image Quality: {minmax_quality}")
+        print(f"Local MinMax Image Quality: {minmax_local_quality}")
+    else:
+        print("not valid")
+        return
+
+if __name__ == "__main__":
+    main()
