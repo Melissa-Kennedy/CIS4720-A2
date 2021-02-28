@@ -12,8 +12,7 @@ def minmax(filename):
         for j in range(img.shape[1]):
             minmax_img[i, j] = (img[i, j] - min_pixel) / (max_pixel - min_pixel) * 255
 
-    cv.imshow("Minmax", minmax_img)
-    cv.waitKey(0)
+    cv.imwrite("editedImages/minmax", minmax_img)
 
 
 def local_minmax(filename, radius):
@@ -33,5 +32,4 @@ def local_minmax(filename, radius):
             
             minmax_img[i, j] = (img[i, j] - min_pixel) / (max_pixel - min_pixel) * 255
 
-    cv.imshow("Minmax", minmax_img)
-    cv.waitKey(0)
+    cv.imwrite("editedImages/local_minmax", minmax_img)
