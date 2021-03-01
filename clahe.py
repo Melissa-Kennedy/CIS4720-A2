@@ -5,7 +5,7 @@ def clahe(filename):
     img = cv.imread(filename, 0)
 
     # Run OpenCV's CLAHE function
-    clahe = cv.createCLAHE(clipLimit=2.0, tileGridSize=(9, 9))
+    clahe = cv.createCLAHE(clipLimit=2, tileGridSize=(9, 9))
     clahe_img = clahe.apply(img)
 
     # Save the image

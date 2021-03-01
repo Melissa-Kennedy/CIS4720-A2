@@ -39,7 +39,7 @@ def main():
         print(f"Base Image Quality: {base_quality}")
         print(f"MinMax Image Quality: {minmax_quality}")
     elif algo.lower() == "local":
-        minmax.local_minmax(f"testImages/groundTruths/{prefix}_lowcntrst{number}.jpg", 100)
+        minmax.local_minmax(f"testImages/groundTruths/{prefix}_lowcntrst{number}.jpg", 50)
         
         base_quality = quality.image_quality(f"testImages/groundTruths/{prefix}_lowcntrst{number}.jpg", f"testImages/groundTruths/{prefix}_grndtruth.jpg")
         minmax_local_quality = quality.image_quality(f"editedImages/local_minmax.jpg", f"testImages/groundTruths/{prefix}_grndtruth.jpg")
@@ -50,7 +50,7 @@ def main():
         ahe.ahe(f"testImages/groundTruths/{prefix}_lowcntrst{number}.jpg")
         clahe.clahe(f"testImages/groundTruths/{prefix}_lowcntrst{number}.jpg")
         minmax.minmax(f"testImages/groundTruths/{prefix}_lowcntrst{number}.jpg")
-        minmax.local_minmax(f"testImages/groundTruths/{prefix}_lowcntrst{number}.jpg", 20)
+        minmax.local_minmax(f"testImages/groundTruths/{prefix}_lowcntrst{number}.jpg", 50)
 
         base_quality = quality.image_quality(f"testImages/groundTruths/{prefix}_lowcntrst{number}.jpg", f"testImages/groundTruths/{prefix}_grndtruth.jpg")
         ahe_quality = quality.image_quality(f"editedImages/adaptive_histogram_equalization.jpg", f"testImages/groundTruths/{prefix}_grndtruth.jpg")
