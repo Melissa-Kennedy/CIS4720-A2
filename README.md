@@ -3,12 +3,16 @@
 ## Function explanations
 
 ### AHE
+`ahe.py` uses OpenCV's implementation of Contrast Limited Adaptive Histogram Equalization, but with a `clipLimit` of 0. In other words, it implements Adaptive Histogram Equalization. By default, it has a block size of 9x9.
 
 ### CLAHE
+`clahe.py` uses OpenCV's implementation of Contrast Limited Adaptive Histogram Equalization. By default, it has a max slope of 2, and a block size of 9x9.
 
 ### MinMax / Global Histogram Stretching
+the `minmax` function of `minmax.py` implements global contrast stretching.
 
 ### Local Histogram Stretching
+The `local_minmax` function in `minmax.py` implements local contrast stretching. It uses the same forumla as global contrast stretching, but the minimum and maximum values are calculated base on a 100x100 region surrounding each pixel.
 
 ## Checking Quality of Improved Images
 
